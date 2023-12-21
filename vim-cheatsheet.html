@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Vim Cheat Sheet</title>
+
+	<style>
+		/*　４列のグリッド */
+		.wrapper {
+			display: grid;
+			grid-template-columns: 9fr 8fr 11fr 8fr;
+			gap: 5px;
+		}
+
+		/* 各列に子グリッド設定 */
+		[class^="column"] {
+			display: grid;
+			margin: 1em;
+		}
+		.heading {
+			color: green;
+			margin: auto;
+		}
+		.search-grid {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 5px;
+		}
+		.search {
+			page-break-before: always;
+		}		
+
+		/* テーブル設定 */
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+		.arrow-key th {
+			border: 1px solid #000;
+			padding: .3rem;
+			background: #ccc;
+		}
+		.combination th {
+			border: 1px solid #000;
+			padding: .3rem;
+			background: #ccc;
+		}
+		.comb-sample td {
+			text-align: center;
+		}
+		td {
+			border: 1px solid #000;
+			padding: .3rem .5rem;
+			font-size: .9rem;
+		}
+		.movement tr td:nth-child(1),
+		.visual tr td:nth-child(1),
+		.column2 tr td:nth-child(1),
+		.file tr td:nth-child(1),
+		.comb-op tr td:nth-child(1),
+		.jump tr td:nth-child(1),
+		.search tr td:nth-child(1) {
+			color: #121;
+			background: #eee;
+			font-weight: bold;
+		}
+
+		.arrow-key td {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<div class="column1">
+			<div class="arrow-key">
+				<h3>方向キー</h3>
+				<table>
+					<thead class="hotkey">
+						<th>h</th>
+						<th>j</th>
+						<th>k</th>
+						<th>l</th>
+					</thead>
+					<tbody>
+						<td>←</td>
+						<td>↓</td>
+						<td>↑</td>
+						<td>→</td>
+					</tbody>
+				</table>
+			</div>
+			<div class="movement">
+				<h3>カーソル移動</h3>
+				<table>
+					<tbody>
+						<tr>
+							<td>w</td>
+							<td>次の単語</td>
+						</tr>
+						<tr>
+							<td>b</td>
+							<td>手前の単語</td>
+						</tr>
+						<tr>
+							<td>e</td>
+							<td>単語の末尾</td>
+						</tr>
+						<tr>
+							<td>ge</td>
+							<td>手前の単語の末尾</td>
+						</tr>
+						<tr>
+							<td>0</td>
+							<td>行頭</td>
+						</tr>
+						<tr>
+							<td>$</td>
+							<td>行末</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="visual">
+				<h3>ビジュアルモード向け</h3>
+				<table>
+					<tbody>
+						<tr>
+							<td>y</td>
+							<td>コピー</td>
+						</tr>
+                        <tr>
+                            <td>d</td>
+                            <td>削除</td>
+                        </tr>
+						<tr>
+							<td>&#62</td>
+							<td>インデント追加</td>
+						</tr>
+						<tr>
+							<td>&#60</td>
+							<td>インデント削除</td>
+						</tr>
+						<tr>
+							<td>w ファイル名</td>
+							<td>選択部分をファイル保存</td>
+						</tr>
+						<tr>
+							<td>v</td>
+							<td>ビジュアルモードへ</td>
+						</tr>
+						<tr>
+							<td>V</td>
+							<td>行選択</td>
+						</tr>
+						<tr>
+							<td>Ctrl-v</td>
+							<td>ブロックモードへ</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="column2">
+		<div class="insert">
+			<h3>インサートモード切り替え</h3>
+			<table>
+				<tbody>
+					<tr>
+						<td>i</td>
+						<td>カーソル位置に挿入</td>
+					</tr>
+					<tr>
+						<td>I</td>
+						<td>行頭に挿入</td>
+					</tr>
+					<tr>
+						<td>a</td>
+						<td>カーソル位置の後に追加</td>
+					</tr>
+					<tr>
+						<td>A</td>
+						<td>行末に追加</td>
+					</tr>
+					<tr>
+						<td>O</td>
+						<td>カーソルの上に行挿入</td>
+					</tr>
+					<tr>
+						<td>o</td>
+						<td>カーソルの下に行追加</td>
+					</tr>
+					<tr>
+						<td>Esc or Ctrl-[</td>
+						<td>ノーマルモードへ</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="editing">
+			<h3>テキスト編集</h3>
+			<table>
+				<tbody>
+					<tr>
+						<td>x</td>
+						<td>１文字削除</td>
+					</tr>
+					<tr>
+						<td>dd</td>
+						<td>行削除</td>
+					</tr>
+					<tr>
+						<td>yy</td>
+						<td>行コピー（ヤンク）</td>
+					</tr>
+					<tr>
+						<td>p</td>
+						<td>貼り付け（プット）</td>
+					</tr>
+					<tr>
+						<td>r</td>
+						<td>文字置き換え</td>
+					</tr>
+					<tr>
+						<td>u</td>
+						<td>アンドゥ</td>
+					</tr>
+					<tr>
+						<td>Ctrl-r</td>
+						<td>リドゥ</td>
+					</tr>
+					<tr>
+						<td>. (ドット)</td>
+						<td>直前の操作を繰り返す</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+		<div class="column3">
+			<div class="file">
+				<h3>ファイル操作</h3>
+				<table>
+					<tbody>
+						<tr>
+							<td>:w</td>
+							<td>保存</td>
+						</tr>
+						<tr>
+							<td>:w ファイル名</td>
+							<td>ファイル名つけて保存</td>
+						</tr>
+						<tr>
+							<td>:wq</td>
+							<td>保存して終了</td>
+						</tr>
+						<tr>
+							<td>:q&#33</td>
+							<td>保存せず終了</td>
+						</tr>
+						<tr>
+							<td>:&#33コマンド</td>
+							<td>ターミナルのコマンド実行</td>
+						</tr>
+						<tr>
+							<td>:help</td>
+							<td>ヘルプ<br>
+								Ctrl-w w ウィンドウ切り替え<br>
+								:q 閉じる</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="combination">
+				<div>
+					<h3>コマンドの組合せ</h3>
+					<table>
+						<thead>
+							<th>オペレーター</th>
+							<th>数字</th>
+							<th>モーション</th>
+							<th>機能</th>
+						</thead>
+						<tbody>
+							<tr class="comb-sample">
+								<td>d</td>
+								<td>3</td>
+								<td>w</td>
+								<td>単語３つ削除</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="comb-op">
+					<table>
+						<tr>
+							<td>dw</td>
+							<td>単語削除</td>
+						</tr>
+						<tr>
+							<td>d&#36</td>
+							<td>カーソルから行末まで削除</td>
+						</tr>
+						<tr>
+							<td>y2w</td>
+							<td>２単語コピー</td>
+						</tr>
+						<tr>
+							<td>c3w</td>
+							<td>３単語変更</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<div class="column4">
+			<div class="jump">
+				<h3>ジャンプ移動</h3>
+				<table>
+					<tbody>
+						<tr>
+							<td>Ctrl-G</td>
+							<td>現在位置</td>
+						</tr>
+						<tr>
+							<td>行番号-G</td>
+							<td>行番号にジャンプ</td>
+						</tr>
+						<tr>
+							<td>G</td>
+							<td>最終行に移動</td>
+						</tr>
+						<tr>
+							<td>gg</td>
+							<td>トップに移動</td>
+						</tr>
+						<tr>
+							<td>Ctrl-d</td>
+							<td>画面半分進む</td>
+						</tr>
+						<tr>
+							<td>Ctrl-u</td>
+							<td>画面半分戻る</td>
+						</tr>
+						<tr>
+							<td>Ctrl-f</td>
+							<td>１画面進む</td>
+						</tr>
+						<tr>
+							<td>Ctrl-b</td>
+							<td>１画面戻る</td>
+						</tr>
+                        <tr>
+                            <td>Ctrl-o</td>
+                            <td>ポジション戻る</td>
+                        </tr>
+                        <tr>
+                            <td>Ctrl-i</td>
+                            <td>ポジション進む</td>
+                        </tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="heading"><h2> Vim CheatSheet</h2></div>
+		</div>
+	</div>
+
+	<div class="search-grid">
+		<div class="search">
+			<h3>検索置き換え</h3>
+			<table>
+				<tbody>
+					<tr>
+						<td>&#47文字列</td>
+						<td>下方向に検索</td>
+					</tr>
+					<tr>
+						<td>&#63</td>
+						<td>上方向に検索</td>
+					</tr>
+					<tr>
+						<td>n</td>
+						<td>次の検索結果</td>
+					</tr>
+					<tr>
+						<td>N</td>
+						<td>手前の検索結果</td>
+					</tr>
+					<tr>
+						<td>:%s/元文字列/置換え文字列/g</td>
+						<td>全て置き換え</td>
+					</tr>
+					<tr>
+						<td>:%s/元文字列/置換え文字列/gc</td>
+						<td>確認して全て置き換え</td>
+					</tr>
+					<tr>
+						<td colspan="2">:set オプション(中止　:set noオプション）</td>
+					</tr>
+					<tr>
+						<td>ic</td>
+						<td>大文字小文字を区別しない</td>
+					</tr>
+					<tr>
+						<td>hls</td>
+						<td>検索結果をハイライト</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
