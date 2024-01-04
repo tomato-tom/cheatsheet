@@ -11,7 +11,7 @@
 `ctrl + shift + w`: 閉じる
 
 タブ
-`ctrl + alt + <n>: タブ<n>に切り替え
+`ctrl + alt + <n>`: タブ<n>に切り替え
 `ctrl + shift + d`: タブを複製
 `ctrl + shift + t`: 新しいタブ
 `ctrl + tab`: 次のタブ
