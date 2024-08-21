@@ -8,7 +8,7 @@
 <br>
 
 <div style="text-align: center;">
-    <img src="vim_window.png" alt="vim_window" width="300">
+    <img src="vim_window.png" alt="vim_window" width="600">
 </div>
 <br>
 
