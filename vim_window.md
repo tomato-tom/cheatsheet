@@ -7,7 +7,12 @@
 - エクスプローラ <br>
 <br>
 
-別のウィンドウや別タブよりクリップボードの共有が楽で便利
+<div style="text-align: center;">
+    ![vim_window](vim_window.png){: style="width:300px"}
+</div>
+
+
+別のウィンドウや別タブよりクリップボードの共有が楽で便利<br>
 基本的に`Ctrl + w` のあとそれぞれのコマンドを続ける
 <br>
 
