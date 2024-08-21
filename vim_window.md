@@ -8,8 +8,9 @@
 <br>
 
 <div style="text-align: center;">
-    ![vim_window](vim_window.png){: style="width:300px"}
+    <img src="vim_window.png" alt="vim_window" width="300">
 </div>
+<br>
 
 
 別のウィンドウや別タブよりクリップボードの共有が楽で便利<br>
