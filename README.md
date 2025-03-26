@@ -1,8 +1,9 @@
 # ショートカットキーとかのチートシート
 
-- [Konsole]()
-- [SHLL Hotkey]()
-- [VIM Cheatsheet](https://github.com/tomato-tom/cheatsheet/blob/main/vim_cheatsheet.md)
-- [VIM Window](https://github.com/tomato-tom/cheatsheet/blob/main/vim_window.md)
-- [Windows10 Terminal](https://github.com/tomato-tom/cheatsheet/blob/main/win_terminal_hotkey.md)
-
+- [Konsole](konsole.md)
+- [SHLL Hotkey](shell_hotkey.md)
+- [TMUX Cheatsheet](tmux_cheatsheet.md)
+- [VIM Cheatsheet](vim-cheatsheet.html)
+- [VIM Cheatsheet](vim_cheatsheet.md)
+- [VIM Window](vim_window.md)
+- [Windows10 Terminal](win_terminal_hotkey.md)
