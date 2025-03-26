@@ -7,54 +7,67 @@
 	<title>Vim Cheat Sheet</title>
 
 	<style>
-		/*　４列のグリッド */
-		.wrapper {
-			display: grid;
-			grid-template-columns: 9fr 8fr 11fr 8fr;
-			gap: 5px;
+		/* 基本設定 */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 10px;
+			box-sizing: border-box;
 		}
 
-		/* 各列に子グリッド設定 */
+		/* モバイルファーストのグリッド */
+		.wrapper {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 10px;
+		}
+
+		/* 各列設定 */
 		[class^="column"] {
 			display: grid;
-			margin: 1em;
+			margin: 0.5em;
 		}
+
 		.heading {
 			color: green;
 			margin: auto;
 		}
-		.search-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5px;
-		}
+
+    /*
 		.search {
 			page-break-before: always;
 		}		
+    */
 
 		/* テーブル設定 */
 		table {
 			border-collapse: collapse;
 			width: 100%;
+			margin-bottom: 15px;
 		}
+
 		.arrow-key th {
 			border: 1px solid #000;
 			padding: .3rem;
 			background: #ccc;
 		}
+
 		.combination th {
 			border: 1px solid #000;
 			padding: .3rem;
 			background: #ccc;
 		}
+
 		.comb-sample td {
 			text-align: center;
 		}
+
 		td {
 			border: 1px solid #000;
 			padding: .3rem .5rem;
 			font-size: .9rem;
 		}
+
 		.movement tr td:nth-child(1),
 		.visual tr td:nth-child(1),
 		.column2 tr td:nth-child(1),
@@ -70,12 +83,29 @@
 		.arrow-key td {
 			text-align: center;
 		}
+
+		/* タブレットサイズ以上のスタイル */
+		@media (min-width: 600px) {
+			.wrapper {
+				grid-template-columns: repeat(2, 1fr);
+				gap: 15px;
+			}
+		}
+
+		/* デスクトップサイズ以上のスタイル */
+		@media (min-width: 900px) {
+			.wrapper {
+				grid-template-columns: repeat(4, 1fr);
+				gap: 20px;
+			}
+		}
 	</style>
 </head>
 <body>
 	<div class="wrapper">
 		<div class="column1">
 			<div class="arrow-key">
+			<div class="heading"><h2> Vim CheatSheet</h2></div>
 				<h3>方向キー</h3>
 				<table>
 					<thead class="hotkey">
@@ -109,10 +139,6 @@
 							<td>単語の末尾</td>
 						</tr>
 						<tr>
-							<td>ge</td>
-							<td>手前の単語の末尾</td>
-						</tr>
-						<tr>
 							<td>0</td>
 							<td>行頭</td>
 						</tr>
@@ -131,10 +157,10 @@
 							<td>y</td>
 							<td>コピー</td>
 						</tr>
-                        <tr>
-                            <td>d</td>
-                            <td>削除</td>
-                        </tr>
+            <tr>
+                <td>d</td>
+                <td>削除</td>
+            </tr>
 						<tr>
 							<td>&#62</td>
 							<td>インデント追加</td>
@@ -259,7 +285,7 @@
 							<td>保存</td>
 						</tr>
 						<tr>
-							<td>:w ファイル名</td>
+							<td>:w file</td>
 							<td>ファイル名つけて保存</td>
 						</tr>
 						<tr>
@@ -375,53 +401,49 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="heading"><h2> Vim CheatSheet</h2></div>
-		</div>
-	</div>
-
-	<div class="search-grid">
-		<div class="search">
-			<h3>検索置き換え</h3>
-			<table>
-				<tbody>
-					<tr>
-						<td>&#47文字列</td>
-						<td>下方向に検索</td>
-					</tr>
-					<tr>
-						<td>&#63</td>
-						<td>上方向に検索</td>
-					</tr>
-					<tr>
-						<td>n</td>
-						<td>次の検索結果</td>
-					</tr>
-					<tr>
-						<td>N</td>
-						<td>手前の検索結果</td>
-					</tr>
-					<tr>
-						<td>:%s/元文字列/置換え文字列/g</td>
-						<td>全て置き換え</td>
-					</tr>
-					<tr>
-						<td>:%s/元文字列/置換え文字列/gc</td>
-						<td>確認して全て置き換え</td>
-					</tr>
-					<tr>
-						<td colspan="2">:set オプション(中止　:set noオプション）</td>
-					</tr>
-					<tr>
-						<td>ic</td>
-						<td>大文字小文字を区別しない</td>
-					</tr>
-					<tr>
-						<td>hls</td>
-						<td>検索結果をハイライト</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+      <div class="search">
+        <h3>検索置き換え</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td>&#47文字列</td>
+              <td>下方向に検索</td>
+            </tr>
+            <tr>
+              <td>&#63</td>
+              <td>上方向に検索</td>
+            </tr>
+            <tr>
+              <td>n</td>
+              <td>次の検索結果</td>
+            </tr>
+            <tr>
+              <td>N</td>
+              <td>手前の検索結果</td>
+            </tr>
+            <tr>
+              <td>:%s/src/dest/g</td>
+              <td>全て置き換え</td>
+            </tr>
+            <tr>
+              <td>:%s/src/dest/gc</td>
+              <td>確認して全て置き換え</td>
+            </tr>
+            <tr>
+              <td colspan="2">:set オプション(中止　:set noオプション）</td>
+            </tr>
+            <tr>
+              <td>ic</td>
+              <td>大文字小文字を区別しない</td>
+            </tr>
+            <tr>
+              <td>hls</td>
+              <td>検索結果をハイライト</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
 	</div>
 </body>
 </html>
