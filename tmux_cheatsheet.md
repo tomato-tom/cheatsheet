@@ -6,10 +6,11 @@
 tmux                         # 新しいセッションの開始
 tmux ls                      # セッションリストの表示
 tmux attach                  # 切り離したセッションに再接続
-tmux new -s <name>           # 新しいセッションを指定した名前で開始
+tmux new-session -s <name>   # 新しいセッションを指定した名前で開始
+tmux new-session -d          # 新しいセッションをバックグラウンドで開始
 tmux attach -t <name>        # 指定したセッションに再接続
 tmux kill-session -t <name>  # 指定したセッションを終了
-tmux kill-session -a         # 現在のセッション以外を終了
+tmux kill-session -a         # 接続してるセッション以外を終了
 ```
 
 - `C-b d`：現在のセッションからデタッチ（セッションをバックグラウンドに移動）
