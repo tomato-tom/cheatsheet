@@ -103,8 +103,8 @@ vim, nvim共通、詳細は`:help window`
 
 `:term` ターミナル開く<br>
 `:vert term` 左にターミナル開く<br>
-
 <br>
+
 > `:help terminal` マニュアル
 > 環境次第で挙動変わる
 
