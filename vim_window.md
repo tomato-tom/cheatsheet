@@ -105,7 +105,7 @@ vim, nvim共通、詳細は`:help window`
 `:vert term` 左にターミナル開く<br>
 <br>
 
-> `:help terminal` マニュアル
+> `:help terminal` マニュアル<br>
 > 環境次第で挙動変わる
 
 
