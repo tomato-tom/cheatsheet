@@ -1,4 +1,24 @@
+---
+title: vim search
+description: Searching in files in vim
+updated: 2025-09-19
+environment: ubuntu desktop
+genai:
+    - claude sonnet4
+    - deepseek
+visibility: public
+status: draft
+tags:
+    - systemd
+    - transient
+    - cheatsheet
+---
+
 # vim 検索と置換のチートシート
+<!-- status: need-edit | reason:
+    正規表現の羅列は見にくいな
+    いい感じにまとまらないか
+-->
 
 ## Vim 検索パターン
 

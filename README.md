@@ -1,3 +1,16 @@
+---
+title: README
+description: README for cheatsheet project
+created: 2025-09-19
+visibility: public
+status: done
+tags:
+    - cheatsheet
+    - vim
+    - console
+    - terminal
+    - cli
+---
 # ショートカットキーとかのチートシート
 
 ### vim

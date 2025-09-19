@@ -1,76 +1,106 @@
+---
+title: systemd-run cheatsheet
+description: Cheatsheet for systemd-run
+created: 2025-09-19
+environment: ubuntu desktop
+genai:
+    - claude sonnet4
+    - deepseek
+visibility: public
+status: wip
+tags:
+    - systemd
+    - transient
+    - cheatsheet
+---
 # systemd-run チートシート
+
+systemdの一時的サービス、スクリプトのバックグラウンド実行、リソース制限などに向いてそう
+
+**要root権限**
 
 ## 基本構文
 ```bash
 systemd-run [OPTIONS...] COMMAND [ARGS...]
 ```
 
-## 基本的な実行
-
-### Service（バックグラウンド実行）
+<!-- status: checked | date: 2025-09-19 -->
+### 基本的なサービス実行
 ```bash
-# 基本実行
-systemd-run echo "hello world"
+# サービス実行されるが即終了して消滅
+systemd-run echo hello
 
-# ユニット名指定
-systemd-run --unit=my-job echo "hello"
+# ユニット名指定でバックグラウンド実行
+systemd-run --unit=long-sleep sleep 100
+systemctl status long-sleep.service
 
-# 説明付き（重要！）
-systemd-run --unit=backup --description="Daily backup job" backup.sh
+# 説明付き
+systemd-run --unit=long-sleep --description="Long sleep" sleep 100
 
-# フォアグラウンドで実行（出力を直接見る）
-systemd-run --wait echo "immediate output"
+# フォアグラウンドで実行
+systemd-run --wait sleep 8 && echo hello
 ```
 
-### Scope（現在セッション内で実行）
+<!-- status: checked | date: 2025-09-19 -->
+### Scope（現在セッション内でフォアグラウンド実行）
 ```bash
-# 現在の端末で実行、systemdが監視
-systemd-run --scope echo "hello"
+# 現在の端末で実行
+systemd-run --scope echo hello
 
-# リソース制限付きで実行
-systemd-run --scope --property=MemoryMax=1G memory-intensive-app
+# 制御構文を実行する場合は`bash -c`でラップするかスクリプト使う必要ある
+systemd-run --scope bash -c 'for i in {1..10}; do echo hello && sleep 1; done'
+
+# スクリプト実行
+echo 'for i in {1..10}; do echo hello && sleep 1; done' >> /tmp/hello.sh
+systemd-run --scope bash /tmp/hello.sh
 ```
+<!-- 基本的にバックグラウンド実行で使うことが多そう。これ"--scope"使いみちあるのか？ -->
 
 ## トリガー実行
 
+<!-- status: checked | date: 2025-09-19 -->
 ### Timer（時間ベース）
 ```bash
 # 10秒後に実行
-systemd-run --timer --on-active=10s --unit=delayed echo "10 seconds passed"
+systemd-run --on-active=10s --unit=delayed bash -c 'echo "10 seconds passed" > /tmp/delayed.txt'
 
 # 毎日2時に実行
-systemd-run --timer --on-calendar="*-*-* 02:00:00" --unit=daily-backup backup.sh
+systemd-run --on-calendar="*-*-* 02:00:00" --unit=daily-backup backup.sh
 
-# 毎時実行（ランダム遅延付き）
-systemd-run --timer --on-calendar=hourly --property=RandomizedDelaySec=10min --unit=hourly-check check.sh
-
-# 相対時間指定
-systemd-run --timer --on-active=5m --unit=reminder notify.sh
+# 毎時実行（ランダム遅延）
+echo date > /tmp/hourly-check.sh
+systemd-run \
+    --on-calendar=hourly \
+    --timer-property=RandomizedDelaySec=10min \
+    --unit=hourly-check \
+    bash /tmp/hourly-check.sh
 ```
 
+<!-- status: checked | date: 2025-09-19 -->
 ### Path（ファイル監視）
 ```bash
-# ファイル変更監視
-systemd-run --path --path-property=PathModified=/var/log/app.log --unit=log-watcher process-log.sh
-
-# ファイル作成監視
-systemd-run --path --path-property=PathExists=/tmp/trigger --unit=file-handler handle-file.sh
-
-# ディレクトリ内のパターンマッチ
-systemd-run --path --path-property=PathExistsGlob=/upload/*.jpg --unit=photo-sync sync-photos.sh
+# ディレクトリの変更を監視し、変更があったらログ書き込み
+systemd-run \
+  --path-property="PathChanged=/tmp/mydir" \
+  --path-property="MakeDirectory=yes" \
+  --unit=my-monitor \
+  bash -c 'date >> /tmp/my-monitor.log'
 ```
 
+<!-- status: need-check | priority: low | reason: これはアプリ側でやる？
 ### Socket（ネットワーク監視）
 ```bash
 # TCPポート監視
-systemd-run --socket --socket-property=ListenStream=8080 --unit=web-handler web-server
+systemd-run --socket-property=ListenStream=8080 --unit=web-handler web-server
 
 # UNIXソケット監視
-systemd-run --socket --socket-property=ListenStream=/run/api.sock --unit=api-handler api-server
+systemd-run --socket-property=ListenStream=/run/api.sock --unit=api-handler api-server
 ```
+-->
 
 ## リソース制御
 
+<!-- status: checked | date: 2025-09-19 -->
 ### CPU制限
 ```bash
 # CPU使用率を50%に制限
@@ -80,6 +110,7 @@ systemd-run --property=CPUQuota=50% --unit=cpu-limited cpu-intensive-task
 systemd-run --property=CPUAffinity=0-3 --unit=core-limited task
 ```
 
+<!-- status: checked | date: 2025-09-19 -->
 ### メモリ制限
 ```bash
 # メモリ使用量制限
@@ -89,6 +120,7 @@ systemd-run --property=MemoryMax=512M --unit=mem-limited memory-task
 systemd-run --property=MemorySwapMax=0 --unit=no-swap task
 ```
 
+<!-- status: need-check | priority: low
 ### 実行環境制御
 ```bash
 # 環境変数設定
@@ -100,15 +132,18 @@ systemd-run --working-directory=/tmp --unit=tmp-work task
 # ユーザー指定
 systemd-run --uid=1000 --gid=1000 --unit=user-task task
 ```
+-->
 
 ## 実用的な使用例
 
+<!-- status: need-check | priority: low | reason: たぶんいけそう、気が向いたら
 ### バックアップ・同期
 ```bash
 # 自動rsync（ファイル変更時）
-systemd-run --path --path-property=PathModified=/data --unit=auto-sync \
+systemd-run --path-property=PathModified=/data --unit=auto-sync \
   --description="Auto sync data directory" \
-  rsync -av /data/ backup-server:/backup/
+  rsync -au /data/ backup-server:/backup/ &&
+  rsync -au backup-server:/backup/ /data/ 
 
 # 定期バックアップ（毎日2時、ランダム遅延）
 systemd-run --timer --on-calendar="*-*-* 02:00:00" --property=RandomizedDelaySec=30min \
@@ -152,16 +187,20 @@ systemd-run --timer --on-calendar="*:0/10" \
   --unit=health-check --description="Service health check" \
   /usr/local/bin/health-check.sh
 ```
+-->
 
 ## 管理・確認コマンド
 
+<!-- status: checked | date: 2025-09-19 -->
 ### ステータス確認
 ```bash
-# 実行中のtransientユニット一覧
+# 実行中のtransient(一時的)ユニット一覧
 systemctl list-units --type=service | grep transient
 
-# 特定ユニットの詳細
+# 特定ユニットの情報
 systemctl status my-unit
+systemctl show my-unit                # 特定ユニットの詳細情報
+systemctl show -p MemoryMax my-unit   # 特定プロパティ情報
 
 # ログ確認
 journalctl -u my-unit -f
@@ -170,18 +209,26 @@ journalctl -u my-unit -f
 systemd-cgtop
 ```
 
+<!-- status: checked | date: 2025-09-19 -->
 ### 制御
 ```bash
 # 停止
 systemctl stop my-unit
 
-# 強制終了
-systemctl kill my-unit
-
 # 全transientユニットの確認
 systemctl list-units --all | grep transient
+
+# 失敗してるサービスを確認
+systemctl list-units --failed
+systemctl is-failed [pattern...]
+
+# failed`の場合は`reset-failed`でクリア、stopは効かない
+# スクリプトに組み込む場合に重要
+sudo systemctl reset-failed           # すべてのfailedサービスをリセット
+sudo systemctl reset-failed <name>    # 個別にリセット
 ```
 
+<!-- status: checked | date: 2025-09-19 -->
 ## よく使うプロパティ一覧
 ```bash
 --property=CPUQuota=50%              # CPU使用率制限
@@ -193,9 +240,3 @@ systemctl list-units --all | grep transient
 --description="説明文"                # ユニット説明
 ```
 
-## Tips
-- 必ず `--description` を付ける（運用時に重要）
-- 本番環境では `RandomizedDelaySec` で負荷分散
-- リソース制限は安全のために積極的に使う
-- ログは `journalctl -u ユニット名` で確認
-- transientユニットは再起動で消える（永続化不要）

@@ -1,3 +1,15 @@
+---
+title: Win Terminal Hotkey
+description: A cheat sheet for Windows 10 terminal
+updated: 2025-09-19
+environment: Windows 10
+visibility: public
+status: done
+tags:
+    - windows10
+    - terminal
+    - cheatsheet
+---
 # Windows 10 ターミナル
 
 

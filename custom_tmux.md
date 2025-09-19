@@ -1,3 +1,16 @@
+---
+title: Custom tmux cheatsheet
+description: A tmux cheat sheet for my personal custom settings
+updated: 2025-09-19
+environment: ubuntu desktop
+genai:
+    - deepseek
+visibility: public
+status: done
+tags:
+    - tmux
+    - cheatsheet
+---
 # tmux チートシート(カスタム)
 設定ファイル: `~/.tmux.conf`
 

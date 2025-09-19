@@ -1,3 +1,15 @@
+---
+title: vim cheatsheet
+description: Cheatsheet for VIM
+updated: 2025-09-19
+environment: ubuntu desktop
+visibility: public
+status: done
+tags:
+    - vim
+    - basic
+    - cheatsheet
+---
 # Vim Cheatsheet
 
 ### 方向キー
