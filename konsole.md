@@ -1,3 +1,17 @@
+---
+title: Konsole
+description: Konsole cheatsheet
+updated: 2025-09-19
+environment: ubuntu desktop
+visibility: public
+status: done
+tags:
+    - konsole
+    - console
+    - terminal
+    - kde-plasma
+    - cheatsheet
+---
 # Konsole ターミナルエミュレータ
 KDE Plasma標準のやつ
 

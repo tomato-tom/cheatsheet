@@ -1,3 +1,14 @@
+---
+title: TMUX Cheatsheet
+description: Tmux cheat sheet
+updated: 2025-09-19
+environment: ubuntu desktop
+visibility: public
+status: done
+tags:
+    - tmux
+    - cheatsheet
+---
 # tmux チートシート
 
 ## 基本操作

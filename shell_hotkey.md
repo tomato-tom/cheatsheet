@@ -1,3 +1,16 @@
+---
+title: Shell Hotkey
+description: Shell Hotkey
+created: 2025-09-19
+visibility: public
+status: done
+tags:
+    - cheatsheet
+    - linux-shell
+    - console
+    - terminal
+    - cli
+---
 ## Shell ホットキー
 
 `C: Ctrl`
@@ -23,10 +36,9 @@
 - `C-x (` マクロ保存開始
 - `C-x )` マクロ保存終了
 - `C-x e` マクロ実行（一旦離してから`e`を押す）
-???
 
 **コマンドラインエディタ**
-- `C-x e` コマンドラインエディタ起動
+- `C-xe` コマンドラインエディタ起動(`Ctrl`押しっぱなし)
 
 **コマンド履歴**
 - `C-p` コマンド履歴をさかのぼる
