@@ -30,3 +30,5 @@ tags:
 - [Konsole](konsole.md)
 - [Windows10 Terminal](win_terminal_hotkey.md)
 
+### その他
+- [systemd-run](systemd-run.md)
