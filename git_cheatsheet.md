@@ -129,10 +129,10 @@ git config --global user.name "name"
 git config --global user.email "mail@example.com"
 
 # エイリアスの設定
-git config --global alias.br branch
 git config --global alias.s status
-git config --global alias.co checkout
-git config --global alias.cm "commit -m"
+git config --global alias.a "add ."
+git config --global alias.sw switch
+git config --global alias.cm "commit -am"
 git config --global alias.br branch
 git config --global alias.lg "log --oneline --graph --all"
 
