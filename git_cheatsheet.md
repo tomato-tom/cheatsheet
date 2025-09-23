@@ -75,6 +75,18 @@ git add .
 git rebase --continue
 ```
 
+<!-- これよく使いそう
+    $ git branch -a
+    * dev
+      main
+      remotes/github/main
+      remotes/local/HEAD -> local/main
+      remotes/local/dev
+      remotes/local/main
+
+    $ git push local dev
+-->
+
 ## リモート操作
 
 ### リモートリポジトリの管理
