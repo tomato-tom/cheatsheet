@@ -38,7 +38,7 @@ git log --oneline  # 1行表示
 git add <file name>      # 変更をステージングエリアに追加
 git add .                # 全ての変更を追加
 git commit -m "message"  # コミット
-git commit -am "message" # 変更を直接コミット（addとcommitを同時に）
+git commit -am "message" # ステージングとコミット（新規ファイル以外）
 ```
 
 ### 変更の取り消し
