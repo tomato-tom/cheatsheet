@@ -35,7 +35,6 @@ git log --oneline  # 1行表示
 
 ### ファイルの追加・コミット
 ```bash
-git add <file name>      # 変更をステージングエリアに追加
 git add .                # 全ての変更を追加
 git commit -m "message"  # コミット
 git commit -am "message" # ステージングとコミット（新規ファイル以外）
@@ -49,11 +48,14 @@ git commit --amend          # 直前のコミットをやり直し
 ```
 
 ### 変更の確認
-git diff          # ステージングされていない変更を確認
-git diff <name>   # 特定ファイルのみ確認
-git diff --staged # ステージング済みの変更を確認
-git diff HEAD     # ステージ済み＋未ステージの全ての変更を確認
-
+```bash
+git diff                      # ステージングされていない変更を確認
+git diff <name>               # 特定ファイルのみ確認
+git diff --staged             # ステージング済みの変更を確認
+git diff HEAD                 # ステージ済み＋未ステージの全ての変更を確認
+git diff <hash>               # 現在と特定のコミットの差分
+git diff <branch1>..<branch2> # 2つのブランチ間の差分
+```
 
 ## ブランチ操作
 
@@ -65,12 +67,8 @@ git branch -a        # リモート含む全てのブランチ
 git branch <name>    # 新規ブランチ作成
 git switch <name>    # ブランチ切り替え
 git switch -c <name> # ブランチ作成＋切り替え
-```
-
-### マージとリベース
-```bash
-git merge <name>  # ブランチをマージ
-git rebase <name> # ブランチをリベース
+git merge <name>     # ブランチをマージ
+git rebase <name>    # ブランチをリベース
 
 # コンフリクト解決後
 git add .
@@ -84,12 +82,13 @@ git rebase --continue
 git remote -v               # リモートリポジトリの確認
 git remote add <name> <URL> # リモートリポジトリの追加
 git fetch                   # リモートから最新情報を取得
-git pull                    # フェッチ＋マージ
-git pull --rebase           # リベースでプル
-```
 
-### プッシュ
-```bash
+# pull
+git pull                    # fetch + merge
+git pull <remote> <branch>  # リモートのブランチ指定
+git pull --rebase           # リベースでプル
+
+# push
 git push                  # 変更をプッシュ
 git push -u origin <name> # 初回プッシュ（ブランチを設定）
 git push --tags           # タグのプッシュ
