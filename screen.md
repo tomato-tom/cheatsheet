@@ -1,3 +1,16 @@
+---
+title: Screen
+description: Screen cheatsheet
+created: 2025-11-12
+visibility: public
+status: done
+tags:
+    - cheatsheet
+    - screen
+    - console
+    - terminal
+    - cli
+---
 # screen
 
 screenは非常に便利な端末マルチプレクサです。
