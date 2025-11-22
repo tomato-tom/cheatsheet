@@ -1,7 +1,8 @@
 ---
 title: TMUX Cheatsheet
 description: Tmux cheat sheet
-updated: 2025-09-19
+created: 2025-09-19
+updated: 2025-11-22
 environment: ubuntu desktop
 visibility: public
 status: done
@@ -65,12 +66,15 @@ C-b !          現在のペインを新しいウィンドウに移動
 ## その他の操作
 
 ```
-C-b ?          キーバインディングの一覧を表示
-C-b [          コピーモードに入る（スクロールやテキスト選択が可能）
-C-b ]          コピーモードで選択したテキストをペースト
-C-b z          現在のペインを最大化/元に戻す
-C-b t          時計を表示
-C-b q          ペイン番号を表示
+C-b ?   キーバインディングの一覧を表示
+C-b [   コピーモードに入る
+            - 方向キー: スクロール
+            - スペース: 選択開始
+            - Enter: コピー
+C-b ]   コピーモードで選択したテキストをペースト
+C-b z   現在のペインを最大化/元に戻す
+C-b t   時計を表示
+C-b q   ペイン番号を表示
 ```
 
 ## カスタマイズ

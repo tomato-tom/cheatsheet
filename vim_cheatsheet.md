@@ -1,7 +1,7 @@
 ---
 title: vim cheatsheet
 description: Cheatsheet for VIM
-updated: 2025-09-19
+updated: 2025-11-22
 environment: ubuntu desktop
 visibility: public
 status: done
@@ -162,6 +162,7 @@ tags:
 ### 設定変更
 
 `:set <オプション>` 設定<br>
+`:set <オプション>?` 設定確認<br>
 `:set no<オプション>` 設定取り消し<br>
 <br>
 
@@ -169,4 +170,5 @@ tags:
 - `ignorecase`  `ic`   検索時大文字小文字を区別しない
 - `hlsearch`    `hls`  検索結果をハイライト
 - `number`      `nu`   行番号表示
+- `shiftwidth=4`         インデント幅変更
 

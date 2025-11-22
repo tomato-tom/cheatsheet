@@ -1,7 +1,7 @@
 ---
 title: Vim Moving cheatsheet
 description: How to move around in a file using vim
-updated: 2025-09-19
+updated: 2025-11-22
 environment: ubuntu desktop
 genai:
     - deepseek
@@ -20,9 +20,9 @@ h, j, k, l    ← ↓ ↑ →（1文字ずつ）
 w, W          次の単語の先頭へ
 b, B          前の単語の先頭へ  
 e, E          単語の末尾へ
-0             行の先頭へ
-^             行の最初の非空白文字へ
-$             行の末尾へ
+0             行頭
+^             行頭文字
+$             行末
 ```
 > 参照: `:help usr_03.txt`
 
@@ -76,6 +76,8 @@ N             前の検索結果へ
 }             次の空行（段落の境界）
 (             前の文の開始
 )             次の文の開始
+Ctrl-o        前のジャンプ位置へ
+Ctrl-i        次のジャンプ位置へ
 ```
 > 参照: `:help jump-motions`
 
@@ -88,11 +90,4 @@ m{word}       マークを設定（例: ma）
 ''            直前のジャンプ位置の行頭へ
 ```
 > 参照: `:help mark-motions`
-
-### 履歴移動
-```
-Ctrl-o        前のジャンプ位置へ
-Ctrl-i        次のジャンプ位置へ
-```
-> 参照: `:help jump-motions`
 
