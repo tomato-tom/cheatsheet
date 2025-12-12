@@ -1,26 +1,21 @@
 ---
 title: vim search
 description: Searching in files in vim
-updated: 2025-09-19
+updated: 2025-12-12
 environment: ubuntu desktop
 genai:
     - claude sonnet4
     - deepseek
 visibility: public
-status: draft
+status: wip
 tags:
-    - systemd
-    - transient
+    - vim
+    - search
     - cheatsheet
+    - substitute
 ---
 
 # vim 検索と置換のチートシート
-<!-- status: need-edit | reason:
-    正規表現の羅列は見にくいな
-    いい感じにまとまらないか
--->
-
-## Vim 検索パターン
 
 ### 基本的な文字列検索
 ```
@@ -30,15 +25,18 @@ tags:
 /\<function\>    完全一致で"function"を検索（functionaryなどは除外）
 ```
 
+### buffer内検索
+
+```vim
+:vimgrep /パターン/ %       " 現在のバッファのみ
+:copen                      " 検索結果のリスト
+```
+
 ### プログラミングでよく使うパターン (参照: `:help pattern`)
 ```
-/def\s\+\w\+        def で始まる関数定義を検索（Python等）
 /function\s\+\w\+   function で始まる関数定義を検索（JavaScript等）
-/class\s\+\w\+      クラス定義を検索
-/import\s\+         import文を検索
 /TODO\|FIXME        TODOかFIXMEを検索
 /^\s*#              コメント行を検索（#で始まる）
-/^\s*//             コメント行を検索（//で始まる）
 ```
 
 ### 空行・空白関連 (参照: `:help /\s`)
@@ -152,22 +150,7 @@ q/           検索履歴ウィンドウを開く
 :%s/^\s*\d\+\.\s*//g     行頭の番号付けを削除
 ```
 
-### 正規表現を使った高度なパターン
-```
-# 日付フォーマットの変換
-:%s/\(\d\{4}\)-\(\d\{2}\)-\(\d\{2}\)/\2\/\3\/\1/g  YYYY-MM-DD → MM/DD/YYYY
-:%s/\(\d\{1,2}\)\/\(\d\{1,2}\)\/\(\d\{4}\)/\3-\1-\2/g  MM/DD/YYYY → YYYY-MM-DD
-
-# ケース変換
-:%s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g   各単語を大文字で開始（キャメルケース）
-:%s/_\(\w\)/\u\1/g                  snake_caseをcamelCaseに
-
-# 数値の操作
-:%s/\d\+/\=(submatch(0)+1)/g        全ての数値を1増加
-:%s/version \(\d\+\)/version \=submatch(1)+1/g  バージョン番号を増加
-```
-
-### ファイル形式別の実用パターン
+### ファイル形式別
 ```
 # JSON整形
 :%s/",/",\r/g            JSONで改行を入れる
@@ -178,7 +161,6 @@ q/           検索履歴ウィンドウを開く
 :%s/\<AND\>/\r  AND/g    AND句で改行
 
 # ログファイル整理
-:%s/^\[\d\{4}-\d\{2}-\d\{2} \d\{2}:\d\{2}:\d\{2}\] //g  タイムスタンプ削除
 :%s/ERROR\|WARN/*** \0 ***/g  エラーとワーニングを強調
 ```
 

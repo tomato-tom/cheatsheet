@@ -1,12 +1,12 @@
 ---
 title: Vim Moving cheatsheet
 description: How to move around in a file using vim
-updated: 2025-11-22
+updated: 2025-12-12
 environment: ubuntu desktop
 genai:
     - deepseek
 visibility: public
-status: wip
+status: done
 tags:
     - vim
     - move
