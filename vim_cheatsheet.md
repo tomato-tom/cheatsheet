@@ -1,10 +1,8 @@
 ---
 title: vim cheatsheet
 description: Cheatsheet for VIM
-updated: 2025-11-22
-environment: ubuntu desktop
-visibility: public
-status: done
+updated: 2025-12-19
+status: published
 tags:
     - vim
     - basic

@@ -1,13 +1,11 @@
 ---
 title: vim search
 description: Searching in files in vim
-updated: 2025-12-12
-environment: ubuntu desktop
+updated: 2025-12-19
 genai:
     - claude sonnet4
     - deepseek
-visibility: public
-status: wip
+status: draft
 tags:
     - vim
     - search

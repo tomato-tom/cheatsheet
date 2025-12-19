@@ -2,11 +2,9 @@
 title: vim window
 description: Window operations in vim
 updated: 2025-09-19
-environment: ubuntu desktop
 genai:
     - deepseek
-visibility: public
-status: done
+status: published
 tags:
     - vim
     - window

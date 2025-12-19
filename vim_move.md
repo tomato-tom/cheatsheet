@@ -2,11 +2,9 @@
 title: Vim Moving cheatsheet
 description: How to move around in a file using vim
 updated: 2025-12-12
-environment: ubuntu desktop
 genai:
     - deepseek
-visibility: public
-status: done
+status: published
 tags:
     - vim
     - move
@@ -90,4 +88,13 @@ m{word}       マークを設定（例: ma）
 ''            直前のジャンプ位置の行頭へ
 ```
 > 参照: `:help mark-motions`
+
+
+### ファイル間移動
+
+```
+gf            カーソル下のファイルに移動
+Ctrl-o        戻る
+Ctrl-i        進む
+```
 
