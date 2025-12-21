@@ -1,7 +1,6 @@
 # NEC ix2105 CLI チートシート
 
 AI書いたのだけどだいぶ違うかも、雰囲気はだいたいこれ
-要確認、バージョンでも違う
 
 ## 基本操作
 
@@ -9,19 +8,20 @@ AI書いたのだけどだいぶ違うかも、雰囲気はだいたいこれ
 ```
 configure                       // グローバルコンフィグモードへ
 enable-config                   // コンフィグモードへ
-interface <interface-name>     // インターフェースコンフィグモードへ
+interface <name>     // インターフェースコンフィグモードへ
 exit                           // ログアウト
 ```
 
 ### システム基本設定
 ```
-show version                   // システム情報表示
+show version                   // ソフトウェアのバージョン表示
 show running-config           // 現在の設定表示
 show startup-config           // 起動設定表示
 copy running-config startup-config  // 設定保存
 reload                        // 再起動
 clock set <HH:MM:SS> <YYYY/MM/DD>  // 日時設定
-hostname <name>               // ホスト名設定
+hostname <name>               // ホスト名設定(default: Router)
+password <old-password> <new-password>  // パスワード変更
 ```
 
 ## インターフェース設定
@@ -39,26 +39,20 @@ shutdown                      // インターフェース無効化
 ### 設定確認
 ```
 show interfaces                 // 全インターフェース状態
-show interface <interface-name> // 特定インターフェース詳細
-show ip interface brief        // IPインターフェース概要
+show interface <name> // 特定インターフェース詳細
+show ip interface           // IPインターフェース概要
 ```
 
-## ルーティング設定
+### IPアドレス設定
+```
+ip address <ip-address>           // 静的IPアドレス、例 ip address 10.0.0.1/24
+ip address dhcp receive-default   // DHCPクライアントでデフォルトルートを学習
+```
 
 ### スタティックルート
 ```
-ip route <network> <mask> <next-hop>  // スタティックルート追加
-no ip route <network> <mask> <next-hop> // スタティックルート削除
-```
-
-### ルーティングプロトコル
-```
-router rip                     // RIP設定モード
- network <network>            // ネットワークアドバタイズ
- version 2                    // RIPバージョン2
-
-router ospf <process-id>      // OSPF設定モード
- network <network> <mask> area <area-id>
+ip route <ip-address> <next-hop>  // スタティックルート追加
+ip route default <next-hop>  // デフォルトルート
 ```
 
 ### ルーティングテーブル確認
@@ -67,6 +61,7 @@ show ip route                  // ルーティングテーブル表示
 show ip route <network>       // 特定ルート詳細
 show ip protocols             // ルーティングプロトコル情報
 ```
+<!-- ここまでOK -->
 
 ## VLAN設定
 
@@ -135,12 +130,5 @@ traceroute <ip-address>      // トレースルート
 
 show mac-address-table       // MACアドレステーブル表示
 show arp                     // ARPテーブル表示
-```
-
-### 管理設定
-```
-ip default-gateway <address>  // デフォルトゲートウェイ設定
-snmp-server community <string> ro|rw  // SNMPコミュニティ設定
-logging host <ip-address>    // ログサーバー設定
 ```
 
