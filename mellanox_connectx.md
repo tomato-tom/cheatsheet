@@ -43,8 +43,8 @@ https://network.nvidia.com/support/firmware/firmware-downloads/
 )<br>
 
 ファームウェア更新
-> https://network.nvidia.com/support/firmware/nic/
-> https://network.nvidia.com/support/firmware/identification/
+> https://network.nvidia.com/support/firmware/nic/<br>
+> https://network.nvidia.com/support/firmware/identification/<br>
 
 
 ## ConnectX-3
