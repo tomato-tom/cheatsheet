@@ -28,34 +28,30 @@ InfiniBand 速度規格
 
 [ConnectX-3Pro リリースノート](
 https://network.nvidia.com/pdf/firmware/ConnectX3Pro-FW-2_42_5000-release_notes.pdf
-)
+)<br>
 [ConnectX-3 リリースノート](
 https://network.nvidia.com/pdf/firmware/ConnectX3-FW-2_42_5000-release_notes.pdf
-)
+)<br>
 [ConnectX-4 Lx リリースノート](
 https://docs.nvidia.com/networking/display/connectx4lxfirmwarev14321908
-)
+)<br>
 [ConnectX-4 リリースノート](
 https://docs.nvidia.com/networking/display/connectx4firmwarev12284704
-)
+)<br>
 [Firmware Downloads](
 https://network.nvidia.com/support/firmware/firmware-downloads/
-)
+)<br>
 
 ファームウェア更新
-https://network.nvidia.com/support/firmware/nic/
-https://network.nvidia.com/support/firmware/identification/
-
-[mstflint](
-https://github.com/Mellanox/mstflint
-)
+> https://network.nvidia.com/support/firmware/nic/
+> https://network.nvidia.com/support/firmware/identification/
 
 
 ## ConnectX-3
 
 ConnectX®-3 VPI PCI Express Adapter Cards (InfiniBand, Ethernet, FCoE, VPI)
-10~40G(56G)
-PCIe 3.0 x8
+- 10~40G(56G)
+- PCIe 3.0 x8
 
 製品例
 - ConnectX-3 CX311A sfp+
@@ -63,9 +59,9 @@ PCIe 3.0 x8
 - ConnectX-3 CX353A qsfp+
 - ConnectX-3 CX354A qsfp+ 2-port
 
-ザックリと、通常版とPro版それぞれ1/2ポートで４種類あるとも言える
+ザックリと、通常版とPro版それぞれ1/2ポートで４種類あるとも言える。
 クロスフラッシュでモデルの変更できるらしい、ブリック化リスク？
-通常版をPro版にはできない、基盤が違う
+通常版をPro版にはできない、基盤が違う。
 
 lspci/mstflint
 ```
@@ -77,12 +73,12 @@ ConnectX-3 Pro: 4103
 RDMA over Converged Ethernet (RoCE)サポート
 - ConnectX-3:     RoCEv1(L2のみ)
 - ConnectX-3 Pro: RoCEv2サポート(L2/L3)
-> [NVIDIA MLNX_OFED Documentation]("https://docs.nvidia.com/networking/display/mlnxofedv497100lts/rdma+over+converged+ethernet+(roce)")
+> NVIDIA MLNX_OFED Documentation
+> https://docs.nvidia.com/networking/display/mlnxofedv497100lts/rdma+over+converged+ethernet+(roce)
 
 
 ### ファームウェア
 
-mstflint
 ファームウェア・バージョン確認
 ```
 debian@t3350d:~$ sudo mstflint -d 20:00.0 q
@@ -99,12 +95,16 @@ VSD:
 PSID:                  ISL1090110018
 ```
 
+[mstflint](
+https://github.com/Mellanox/mstflint
+)<br>
+
 
 ### Infiniband
 
-
 ツールのインストールとサブネットマネージャの開始
 ```
+# ２枚のカードをPCに付けて、DAC直結の想定で
 sudo apt install -y infiniband-diags rdma-core opensm
 sudo ibstat
 sudo systemctl start opensm
@@ -142,14 +142,14 @@ Configurations:                              Default         Next Boot
 # 3 VIP
 sudo mstconfig -d 20:00.0 set LINK_TYPE_P1=2 LINK_TYPE_P2=2
 ```
-> Ethernetが扱いやすいんじゃないか
-> しかしEthernetだとリンク上がらない、FWの問題？？
-> EthernetにしないでIP over IBでいいかも
-
-> mstconfig – Changing Device Configuration Tool
-> https://docs.nvidia.com/networking/display/mft/mstconfig+%E2%80%93+changing+device+configuration+tool
-> Using mstconfig
-> https://docs.nvidia.com/networking/display/mft/using+mstconfig
+> Ethernetが扱いやすいんじゃないか<br>
+> しかしEthernetだとリンク上がらない、FWの問題？？<br>
+> EthernetにしないでIP over IBでいいかも<br>
+<br>
+> mstconfig – Changing Device Configuration Tool<br>
+> https://docs.nvidia.com/networking/display/mft/mstconfig+%E2%80%93+changing+device+configuration+tool<br>
+> Using mstconfig<br>
+> https://docs.nvidia.com/networking/display/mft/using+mstconfig<br>
 
 
 ### 対応ケーブル
@@ -176,17 +176,17 @@ https://network.nvidia.com/pdf/firmware/ConnectX3-FW-2_42_5000-release_notes.pdf
 https://www.reddit.com/r/homelab/comments/1dzvwbf/mellanox_connectx3_unsupported_cable_but/
 )
 
-Mellanoxはベンダーロック緩いらしいが、
-
 [3rd party SFP利⽤の光と闇](
 https://www.janog.gr.jp/meeting/janog54/wp-content/uploads/2024/05/janog54-3rdparty-konuma.pdf
 )
 
-サードパーティ製トランシーバのロック解除コマンドとサポートまとめ
+[サードパーティ製トランシーバのロック解除コマンドとサポートまとめ](
 https://network-arekore.com/?p=3250
+)
 
-Anyone Try SFPTotal for reprograming SFP transceivers? 
+[Anyone Try SFPTotal for reprograming SFP transceivers? ](
 https://www.reddit.com/r/homelab/comments/uhhcgy/anyone_try_sfptotal_for_reprograming_sfp/
+)
 
 ### 対応スイッチ
 
