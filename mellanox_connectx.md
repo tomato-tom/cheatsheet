@@ -81,7 +81,8 @@ RDMA over Converged Ethernet (RoCE)サポート
 
 ファームウェア・バージョン確認
 ```
-debian@t3350d:~$ sudo mstflint -d 20:00.0 q
+$ sudo apt install -y infiniband-diags rdma-core mstflint opensm
+$ sudo mstflint -d 20:00.0 q
 Image type:            FS2
 FW Version:            2.40.5030
 FW Release Date:       4.1.2017
@@ -105,7 +106,7 @@ https://github.com/Mellanox/mstflint
 ツールのインストールとサブネットマネージャの開始
 ```
 # ２枚のカードをPCに付けて、DAC直結の想定で
-sudo apt install -y infiniband-diags rdma-core opensm
+sudo apt install -y opensm  # いずれか１台のみインストール
 sudo ibstat
 sudo systemctl start opensm
 sudo ibstat
