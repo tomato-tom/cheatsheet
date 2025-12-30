@@ -1,15 +1,14 @@
 ---
 title: Screen
 description: Screen cheatsheet
-created: 2025-11-12
-update: 2025-11-22
+update: 2025-12-30
 visibility: public
-status: done
+status: wip
 tags:
     - cheatsheet
     - screen
     - console
-    - terminal
+    - terminal-multiplexer
     - cli
 ---
 # screen
@@ -24,7 +23,9 @@ screen -t <file> vim file.md  # 特定のコマンドでウィンドウを開始
 screen -r <name>              # デタッチしたセッションに再接続
 screen -ls                    # セッション一覧表示
 screen -S <name> -X quit      # セッション指定で停止
-pkill screen                  # 全セッション停止
+pkill -x screen               # 全セッション停止
+
+> -x オプションなしの"pkill screen" だと"screen"を含む他のプロセスもkillするから注意
 
 # セッション中
 `C-a d`    # セッションからデタッチ
@@ -56,15 +57,34 @@ pkill screen                  # 全セッション停止
 `C-a X`             # リージョン閉じる
 ```
 
-### スクロール・コピー操作
+## スクロール・コピー操作
 ```
 `C-a [`    # スクロールモードに入る
-`Space`    # コピー開始
+`Space`    # コピー開
 `Enter`    # コピー終了
 `C-a ]`    # ペースト
 `q`        # スクロールモードを終了
 ```
 > コピーモードではviキーバインド
+
+
+### バックグラウンドのセッション
+
+スクリプトで多数のセッション開始するときとか
+
+```
+# バックグラウンドでセッション開始
+screen -S <name> -md
+
+# セッション <name> に対して、ls コマンドを実行させる
+screen -S <name> -X stuff "ls -la^M"
+
+# セッション数確認
+pgrep -x screen | wc -l
+
+# セッション内のプロセス確認
+ps -C screen -f --forest
+```
 
 
 ### サーバー作業例
@@ -118,6 +138,9 @@ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u
 ### ヘルプ
 
 `C-a ?`でヘルプ表示
+<details>
+  <summary>表示例</summary>
+
 ```
                               Command key:  ^A   Literal ^A:  a
 
@@ -154,4 +177,4 @@ O    login off
 |    split -v
 :kB: focus prev
 ```
-
+</details>
