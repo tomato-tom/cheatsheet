@@ -1,8 +1,6 @@
 ---
 title: TMUX Cheatsheet
-description: Tmux cheat sheet
-created: 2025-09-19
-updated: 2025-11-22
+updated: 2026-01-13
 environment: ubuntu desktop
 visibility: public
 status: done
@@ -57,7 +55,6 @@ C-b %          垂直にペインを分割
 C-b x          現在のペインを閉じる
 C-b ;          以前作業したペインに移動
 C-b o          次のペインに移動
-C-b arrow      矢印キーでペインを切り替え
 C-b C-o        ペインの順序を入れ替え
 C-b C-arrow    ペインのサイズを1文字単位で調整
 C-b M-arrow    ペインのサイズを5文字単位で調整
@@ -74,8 +71,6 @@ C-b [   コピーモードに入る
             - Enter: コピー
 C-b ]   コピーモードで選択したテキストをペースト
 C-b z   現在のペインを最大化/元に戻す
-C-b t   時計を表示
-C-b q   ペイン番号を表示
 ```
 
 ## カスタマイズ

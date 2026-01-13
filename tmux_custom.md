@@ -1,7 +1,7 @@
 ---
 title: Custom tmux cheatsheet
 description: A tmux cheat sheet for my personal custom settings
-updated: 2025-09-19
+updated: 2026-01-13
 environment: ubuntu desktop
 genai:
     - deepseek
@@ -54,8 +54,6 @@ C-b ,      ウィンドウ名を変更
 # 分割
 C-b -          水平にペインを分割(default: ")
 C-b |          垂直にペインを分割(default: %)
-C-b 3          ３分割
-C-b 4          ４分割
 C-b x          現在のペインを閉じる
 
 # 移動
@@ -89,15 +87,13 @@ C-b [     コピーモードに入る
             * viのような操作でスクロールやテキスト選択が可能
 C-b ]     コピーモードで選択したテキストをペースト
 C-b z     現在のペインを最大化/元に戻す
-C-b t     時計を表示
-C-b q     ペイン番号を表示
 ```
 
 
 ## 設定ファイル
 
 `~/.tmux.conf`
-> 例: https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/tmux.conf
+> https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/tmux.conf
 
 ## エイリアス
 
@@ -107,5 +103,5 @@ tn [name]    新しいセッションを作成、既存ならあタッチ
 ta [name]    セッションにアタッチ
 tk <name>    セッションを削除、引数なしですべてのセッションを終了
 ```
-> 例: https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/bashrc
+> https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/bashrc
 
