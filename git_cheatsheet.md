@@ -1,9 +1,7 @@
 ---
 title: Git cheatsheet
 description: Basic git cheat sheat 
-created: 2025-09-23
-updated: 2025-09-23
-environment: ubuntu desktop
+updated: 2026-01-18
 genai:
     - deepseek
 visibility: public
@@ -18,9 +16,9 @@ tags:
 
 ### リポジトリの初期化
 ```bash
-git init             # 新規リポジトリを作成
-git init --bare      # 新規bareリポジトリを作成
-git clone <repo-URL> # 既存リポジトリをクローン
+git init                         # 新規リポジトリを作成
+git init --bare                  # 新規bareリポジトリを作成
+git clone <repo-URL>  --depth 1  # 既存リポジトリをクローン
 ```
 
 ### ステータス確認

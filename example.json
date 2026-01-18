@@ -5,7 +5,10 @@
       "name": "Alice",
       "age": 28,
       "email": "alice@example.com",
-      "hobbies": ["reading", "hiking"],
+      "hobbies": [
+        "reading",
+        "hiking"
+      ],
       "address": {
         "city": "Tokyo",
         "zip": "100-0001"
@@ -16,7 +19,10 @@
       "name": "Bob",
       "age": 35,
       "email": "bob@example.com",
-      "hobbies": ["gaming", "cooking"],
+      "hobbies": [
+        "gaming",
+        "cooking"
+      ],
       "address": {
         "city": "Osaka",
         "zip": "530-0001"
@@ -27,7 +33,9 @@
       "name": "Charlie",
       "age": 42,
       "email": "charlie@example.com",
-      "hobbies": ["photography"],
+      "hobbies": [
+        "photography"
+      ],
       "address": {
         "city": "Tokyo",
         "zip": "100-0002"
@@ -35,13 +43,34 @@
     }
   ],
   "products": [
-    {"id": "P001", "name": "Laptop", "price": 1200, "stock": 15},
-    {"id": "P002", "name": "Mouse", "price": 25, "stock": 100},
-    {"id": "P003", "name": "Keyboard", "price": 80, "stock": 30}
+    {
+      "id": "P001",
+      "name": "Laptop",
+      "price": 1200,
+      "stock": 15
+    },
+    {
+      "id": "P002",
+      "name": "Mouse",
+      "price": 25,
+      "stock": 100
+    }
   ],
   "orders": [
-    {"user_id": 1, "product_id": "P001", "quantity": 1},
-    {"user_id": 2, "product_id": "P002", "quantity": 3},
-    {"user_id": 1, "product_id": "P003", "quantity": 2}
+    {
+      "user_id": 1,
+      "product_id": "P001",
+      "quantity": 1
+    },
+    {
+      "user_id": 2,
+      "product_id": "P002",
+      "quantity": 3
+    },
+    {
+      "user_id": 1,
+      "product_id": "P003",
+      "quantity": 2
+    }
   ]
 }
