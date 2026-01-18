@@ -203,7 +203,7 @@ curl -s "https://api.github.com/users/tomato-tom/repos?sort=updated&per_page=5" 
 ```
 
 
-## ログファイルの分析
+## ログ分析
 
 journalctlのJSON出力が個別のJSONオブジェクトで、改行区切りで出力されるため、`-s/-slurp`オプションなどでjqで扱えるようにする必要ある。
 
@@ -280,3 +280,7 @@ man jq
 
 jq1.8 Manual
 https://jqlang.org/manual/#invoking-jq
+
+Wiki
+https://github.com/jqlang/jq/wiki
+
