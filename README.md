@@ -16,7 +16,7 @@ tags:
 ### vim
 
 - [VIM Window](vim_window.md)
-- [VIM_MOVE](vim_move.sh)
+- [VIM_MOVE](vim_move.md)
 - [VIM_SEARCH](vim_search.md)
 - [VIM Cheatsheet (HTML)](vim-cheatsheet.html)
 - [VIM Cheatsheet](vim_cheatsheet.md)
