@@ -112,10 +112,10 @@ jq '.key' *.json
 ## 便利なオプション
 
 ```bash
-# コンパクトな出力
+# コンパクトな出力 - マシン処理向け
 jq -c '.' example.json
 
-# 生の文字列として出力（クォートなし）
+# 生の文字列として出力 - 人間向け可視化
 jq -r '.orders[].product_id' example.json
 
 # デフォルト値の設定
@@ -164,10 +164,13 @@ jq '.products[] | "Name: \(.name), Stock: \(.stock)"' example.json
 # 大文字変換
 jq '.products[] | .name | ascii_upcase' example.json
 
-# 値を更新(元のファイルには反映されない）
+# 値を更新
 jq '.products[] | select(.name == "Keyboard") .stock += 1' example.json
 
-# 元のファイルに更新を反映
+# ここまでは元のファイルには反映されない
+
+# 元のファイルを直接更新
+# 値をインクリメント
 tmp=$(mktemp) && jq '
     (.products[] | select(.name == "Keyboard")).stock += 1
 ' example.json > "$tmp" && mv "$tmp" example.json
@@ -207,10 +210,8 @@ curl -s "https://api.github.com/users/tomato-tom/repos?sort=updated&per_page=5" 
 
 journalctlのJSON出力が個別のJSONオブジェクトで、改行区切りで出力されるため、`-s/-slurp`オプションなどでjqで扱えるようにする必要ある。
 
-今回起動のログ統計
 ```sh
-# __REALTIME_TIMESTAMP を数値に変換
-
+# 今回起動のログ統計
 journalctl -b --output=json | jq -s '
   map(.__REALTIME_TIMESTAMP |= tonumber) |
   {
@@ -222,6 +223,7 @@ journalctl -b --output=json | jq -s '
     }
   }
 '
+# __REALTIME_TIMESTAMP を数値に変換
 
 # サービス別のログ数ランキング
 journalctl -b --output=json | jq -s '
@@ -275,7 +277,6 @@ del(path)      # 削除
 
 ## マニュアル
 
-jq --help
 man jq
 
 jq1.8 Manual
