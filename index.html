@@ -6,59 +6,58 @@
     <title>Cheat Sheet</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown-light.min.css">
     <style>
-        body {
-            background-color: #f6f8fa;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        .markdown-body {
-            box-sizing: border-box;
-            min-width: 200px;
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 45px;
-            background-color: white;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        @media (max-width: 767px) {
-            .markdown-body { padding: 15px; }
-        }
-        li { margin-bottom: 5px; }
-        a { color: #0969da; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        body { background-color: #f6f8fa; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .markdown-body { box-sizing: border-box; min-width: 200px; max-width: 980px; margin: 0 auto; padding: 45px; background-color: white; border: 1px solid #d0d7de; border-radius: 6px; }
+        #back-btn { margin-bottom: 20px; display: none; cursor: pointer; color: #0969da; text-decoration: none; font-weight: bold; }
     </style>
 </head>
 <body>
     <article class="markdown-body">
-        <h1>ショートカットキーとかのチートシート</h1>
-
-        <h3>vim</h3>
-        <ul>
-            <li><a href="vim_window.md">VIM Window</a></li>
-            <li><a href="vim_move.md">VIM_MOVE</a></li>
-            <li><a href="vim_search.md">VIM_SEARCH</a></li>
-            <li><a href="vim-cheatsheet.html">VIM Cheatsheet (HTML)</a></li>
-            <li><a href="vim_cheatsheet.md">VIM Cheatsheet</a></li>
-        </ul>
-
-        <h3>console</h3>
-        <ul>
-            <li><a href="shell_hotkey.md">SHLL Hotkey</a></li>
-            <li><a href="custom_tmux.md">CUSTOM_TMUX</a></li>
-            <li><a href="tmux_cheatsheet.md">TMUX Cheatsheet</a></li>
-            <li><a href="screen.md">Screen</a></li>
-            <li><a href="konsole.md">Konsole</a></li>
-            <li><a href="win_terminal_hotkey.md">Windows10 Terminal</a></li>
-        </ul>
-
-        <h3>その他</h3>
-        <ul>
-            <li><a href="systemd-run.md">systemd-run</a></li>
-        </ul>
+        <a id="back-btn" href="javascript:location.reload()">← TOPに戻る</a>
+        <div id="content">
+            <h1>ショートカットキーとかのチートシート</h1>
+            <h3>vim</h3>
+            <ul>
+                <li><a href="vim_window.md">VIM Window</a></li>
+                <li><a href="vim_move.md">VIM_MOVE</a></li>
+                <li><a href="vim_search.md">VIM_SEARCH</a></li>
+                <li><a href="vim_cheatsheet.md">VIM Cheatsheet</a></li>
+            </ul>
+            <h3>console</h3>
+            <ul>
+                <li><a href="shell_hotkey.md">SHLL Hotkey</a></li>
+                <li><a href="custom_tmux.md">CUSTOM_TMUX</a></li>
+                <li><a href="tmux_cheatsheet.md">TMUX Cheatsheet</a></li>
+                <li><a href="screen.md">Screen</a></li>
+                <li><a href="konsole.md">Konsole</a></li>
+                <li><a href="win_terminal_hotkey.md">Windows10 Terminal</a></li>
+            </ul>
+            <h3>その他</h3>
+            <ul>
+                <li><a href="systemd-run.md">systemd-run</a></li>
+            </ul>
+        </div>
     </article>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // リンクをクリックした時の処理
+        document.addEventListener('click', function(e) {
+            const target = e.target.closest('a');
+            if (target && target.getAttribute('href').endsWith('.md')) {
+                e.preventDefault();
+                const mdFile = target.getAttribute('href');
+                
+                fetch(mdFile)
+                    .then(response => response.text())
+                    .then(text => {
+                        document.getElementById('content').innerHTML = marked.parse(text);
+                        document.getElementById('back-btn').style.display = 'block';
+                        window.scrollTo(0, 0);
+                    })
+                    .catch(err => alert('エラー: ファイルが読み込めませんでした'));
+            }
+        });
+    </script>
 </body>
 </html>
