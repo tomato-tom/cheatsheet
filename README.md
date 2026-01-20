@@ -1,7 +1,7 @@
 ---
 title: README
 description: README for cheatsheet project
-created: 2025-09-19
+updated: 2026-01-20
 visibility: public
 status: done
 tags:
@@ -11,25 +11,26 @@ tags:
     - terminal
     - cli
 ---
-# ショートカットキーとかのチートシート
+# チートシート
 
-### vim
+index.htmlの作成更新
+- gen-index.html.sh
 
-- [VIM Window](vim_window.md)
-- [VIM_MOVE](vim_move.md)
-- [VIM_SEARCH](vim_search.md)
-- [VIM Cheatsheet (HTML)](vim-cheatsheet.html)
-- [VIM Cheatsheet](vim_cheatsheet.md)
-
-
-### console
-
-- [SHLL Hotkey](shell_hotkey.md)
-- [TMUX Cheatsheet](tmux_cheatsheet.md)
-- [Screen](screen.md)
-- [Konsole](konsole.md)
-- [Windows10 Terminal](win_terminal_hotkey.md)
-
-### その他
-- [systemd-run](systemd-run.md)
+チートシート
+- git_cheatsheet.md
+- jq.md
+- konsole.md
+- mellanox_connectx.md
+- nec_ix2105_cli.md
+- nftables.md
+- screen.md
+- shell_hotkey.md
+- systemd-run.md
+- tmux_cheatsheet.md
+- vim_cheatsheet.md
+- vim_move.md
+- vim_search.md
+- vim_window.md
+- win_terminal_hotkey.md
+- vim-cheatsheet.html
 
