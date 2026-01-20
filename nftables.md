@@ -26,10 +26,10 @@ Delete table:
 sudo nft delete table ip filter
 
 # Add chain:
-# nft add chain <family> <table_name> <chain_name> {
+# nft add chain <family> <table_name> <chain_name> '{
 #    type <type> hook <hook> priori <priority>; policy <policy>;
-#}
-sudo nft add chain inet filter input { type filter hook input priority 0; policy drop; }
+# }'
+sudo nft add chain inet filter input '{ type filter hook input priority 0; policy drop; }'
 
 #   * type: filter, nat, route
 #   * hook: prerouting, input, forward, output, postrouting
@@ -74,7 +74,7 @@ sudo nft add rule inet filter input udp dport 53 accept
 
 # Masquerade (NAT):
 sudo nft add table ip nat
-sudo nft add chain ip nat postrouting { type nat hook postrouting priority 100; }
+sudo nft add chain ip nat postrouting '{ type nat hook postrouting; priority 100; }'
 # Replace "eth0" with your outgoing interface
 sudo nft add rule ip nat postrouting oif "eth0" masquerade
 
@@ -88,7 +88,7 @@ sudo nft add rule inet filter input ct state invalid drop
 To make rules persistent
 ```
 # Export rules:
-sudo nft list ruleset > /etc/nftables.conf
+sudo nft list ruleset | sudo tee /etc/nftables.conf
 
 # Enable and start service:
 sudo systemctl enable nftables

@@ -50,36 +50,59 @@ C-b ,      ウィンドウ名を変更
 ## ペイン操作
 
 ```
-C-b "          水平にペインを分割
-C-b %          垂直にペインを分割
+# 分割
+C-b -          水平にペインを分割(default: ")
+C-b |          垂直にペインを分割(default: %)
 C-b x          現在のペインを閉じる
+
+# 移動
+C-b h/j/k/l    vim風ペイン移動
 C-b ;          以前作業したペインに移動
 C-b o          次のペインに移動
+
+# 入れ替え
 C-b C-o        ペインの順序を入れ替え
+C-b >          ペインの入れ替え
+C-b <          ペインの入れ替え
+
+# サイズ変更
+C-b H/J/K/L    ペインのサイズを5文字単位で調整（default: C-b M-arrow)
 C-b C-arrow    ペインのサイズを1文字単位で調整
-C-b M-arrow    ペインのサイズを5文字単位で調整
+C-b m          ペインの最大化/元に戻す
+C-b =          ペインを均等サイズに even-horizontal
+C-b +          ペインを均等サイズに even-vertical
+
+# その他
 C-b !          現在のペインを新しいウィンドウに移動
+C-b S          ペインの同期切り替え（全ペインに同じコマンドを送信）
 ```
 
 ## その他の操作
 
 ```
+C-b r     設定を適用
 C-b ?   キーバインディングの一覧を表示
 C-b [   コピーモードに入る
-            - 方向キー: スクロール
-            - スペース: 選択開始
-            - Enter: コピー
+    - viのような操作でスクロールやテキスト選択が可能
+    - default
+        - 方向キー: スクロール
+        - スペース: 選択開始
+        - Enter: コピー
 C-b ]   コピーモードで選択したテキストをペースト
-C-b z   現在のペインを最大化/元に戻す
 ```
 
-## カスタマイズ
+## 設定ファイル
 
-- `~/.tmux.conf` ファイルを編集することで、キーバインディングや設定をカスタマイズできます。
+`~/.tmux.conf`
+> https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/tmux.conf
 
-```bash
-# 例: プレフィックスキーを C-b から C-a に変更
-unbind C-b
-set-option -g prefix C-a
-bind C-a send-prefix
+## エイリアス
+
 ```
+tl           リスト
+tn [name]    新しいセッションを作成、既存ならあタッチ
+ta [name]    セッションにアタッチ
+tk <name>    セッションを削除、引数なしですべてのセッションを終了
+```
+> https://github.com/tomato-tom/ubuntu-setup/blob/main/dotfiles/bashrc
+
