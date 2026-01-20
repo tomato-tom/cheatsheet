@@ -1,3 +1,4 @@
+cat <<EOF > index.html
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -16,21 +17,7 @@
         <div id="content">
             <h1>Cheat Sheets</h1>
             <ul>
-                <li><a href="git_cheatsheet.md">git_cheatsheet</a></li>
-                <li><a href="jq.md">jq</a></li>
-                <li><a href="konsole.md">konsole</a></li>
-                <li><a href="mellanox_connectx.md">mellanox_connectx</a></li>
-                <li><a href="nec_ix2105_cli.md">nec_ix2105_cli</a></li>
-                <li><a href="nftables.md">nftables</a></li>
-                <li><a href="screen.md">screen</a></li>
-                <li><a href="shell_hotkey.md">shell_hotkey</a></li>
-                <li><a href="systemd-run.md">systemd-run</a></li>
-                <li><a href="tmux_cheatsheet.md">tmux_cheatsheet</a></li>
-                <li><a href="vim_cheatsheet.md">vim_cheatsheet</a></li>
-                <li><a href="vim_move.md">vim_move</a></li>
-                <li><a href="vim_search.md">vim_search</a></li>
-                <li><a href="vim_window.md">vim_window</a></li>
-                <li><a href="win_terminal_hotkey.md">win_terminal_hotkey</a></li>
+$(ls *.md | grep -v "README.md" | sed 's/\(.*\)\.md/                <li><a href="\1.md">\1<\/a><\/li>/')
             </ul>
         </div>
     </article>
@@ -51,3 +38,4 @@
     </script>
 </body>
 </html>
+EOF
