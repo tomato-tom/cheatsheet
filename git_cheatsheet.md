@@ -1,7 +1,7 @@
 ---
 title: Git cheatsheet
 description: Basic git cheat sheat 
-updated: 2026-01-18
+updated: 2026-02-06
 genai:
     - deepseek
 visibility: public
@@ -16,9 +16,9 @@ tags:
 
 ### リポジトリの初期化
 ```bash
-git init                         # 新規リポジトリを作成
-git init --bare                  # 新規bareリポジトリを作成
-git clone <repo-URL>  --depth 1  # 既存リポジトリをクローン
+git init [repo]                  # 新規リポジトリを作成
+git init --bare [repo]           # 新規bareリポジトリを作成(ローカル・リモートgitサーバーなど)
+git clone <repo-URL>  --depth 1  # 既存リポジトリを最新のみクローン
 ```
 
 ### ステータス確認
@@ -44,6 +44,26 @@ git checkout -- <file name> # ステージング前の変更を取り消し
 git reset HEAD <file name>  # ステージングした変更を取り消し
 git commit --amend          # 直前のコミットをやり直し
 ```
+
+過去に削除したファイル(file)を戻す手順例
+```sh
+# hash確認
+git log --oneline
+
+# 確認したhashで戻したいファイルが存在する一時的なブランチ作成
+git checkout -b temp 2228f27
+# ファイル確認
+ls file
+
+# 元のブランチに戻る
+git checkout dev
+# tempブランチからファイル取得
+git checkout temp -- file
+git status
+git add file
+git commit -m "Restore: file"
+```
+
 
 ### 変更の確認
 ```bash
@@ -73,17 +93,16 @@ git add .
 git rebase --continue
 ```
 
-<!-- これよく使いそう
-    $ git branch -a
-    * dev
-      main
-      remotes/github/main
-      remotes/local/HEAD -> local/main
-      remotes/local/dev
-      remotes/local/main
-
-    $ git push local dev
--->
+出力例
+```sh
+$ git branch -a
+* dev
+  main
+  remotes/github/main
+  remotes/local/HEAD -> local/main
+  remotes/local/dev
+  remotes/local/main
+```
 
 ## リモート操作
 
@@ -104,7 +123,7 @@ git push -u origin <name> # 初回プッシュ（ブランチを設定）
 git push --tags           # タグのプッシュ
 ```
 
-## その他の便利コマンド
+## その他のコマンド
 
 ### スタッシュ
 ```bash
