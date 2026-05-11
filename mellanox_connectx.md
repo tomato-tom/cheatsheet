@@ -6,41 +6,50 @@ visibility: public
 status: wip
 tags:
     - mellanox
-    - connectx-3
-    - connectx-4
     - infiniband
     - ethernet
 ---
-# Mellanox ConnectX-3/4
+# Mellanox ConnectX
+ローカルネットワークを高速化してみよう、intelが無難そうだがMellanoxもある<br>
+とりあえずヤフオクなどで探す用のメモ
 
-中古市場で安価安定流通してるPCIe NIC 10~100G
+中古市場で安価安定流通してるPCIe NIC 10~100G<br>
 ケーブルの互換性も良さそう??
 
 InfiniBand 速度規格
+
 | 略称                    | 年   | 1x速度   | 4X速度(実効)  | 特徴・世代         |
 |-------------------------|------|----------|---------------|--------------------|
 | QDR(Quad Data Rate)     | 2004 | 10 Gbps  | 40 Gbps       | ConnectX-2/3 世代  |
 | FDR(Fourteen Data Rate) | 2012 | 14 Gbps  | 56 Gbps       | ConnectX-3 世代    |
 | EDR(Enhanced Data Rate) | 2012 | 25 Gbps  | 100 Gbps      | ConnectX-4 世代    |
 
+InfiniBandでできること
+- RDMA - リモートメモリ共有
+- NVMe over Fabrics - NVMe SSDをネットワークマウント
+- MPI(Message Passing Interface) - 複数のPCで並列計算処理のプロセス間通信を高速化
 
 ## 参考
 
 [ConnectX-3Pro リリースノート](
 https://network.nvidia.com/pdf/firmware/ConnectX3Pro-FW-2_42_5000-release_notes.pdf
-)<br>
+)
+
 [ConnectX-3 リリースノート](
 https://network.nvidia.com/pdf/firmware/ConnectX3-FW-2_42_5000-release_notes.pdf
-)<br>
+)
+
 [ConnectX-4 Lx リリースノート](
 https://docs.nvidia.com/networking/display/connectx4lxfirmwarev14321908
-)<br>
+)
+
 [ConnectX-4 リリースノート](
 https://docs.nvidia.com/networking/display/connectx4firmwarev12284704
-)<br>
+)
+
 [Firmware Downloads](
 https://network.nvidia.com/support/firmware/firmware-downloads/
-)<br>
+)
 
 ファームウェア更新
 > https://network.nvidia.com/support/firmware/nic/<br>
@@ -105,7 +114,7 @@ https://github.com/Mellanox/mstflint
 
 ツールのインストールとサブネットマネージャの開始
 ```
-# ２枚のカードをPCに付けて、DAC直結の想定で
+# ２枚のカードをそれぞれPCに挿して、DAC直結の想定で
 sudo apt install -y opensm  # いずれか１台のみインストール
 sudo ibstat
 sudo systemctl start opensm
@@ -212,10 +221,22 @@ https://network.nvidia.com/pdf/firmware/ConnectX3-FW-2_42_5000-release_notes.pdf
     https://docs.nvidia.com/networking/display/sb77x0edr
     )
 
+[EDRおよび、FDR InfiniBandへのガイダンス](
+https://www.servants.co.jp/blog/product/pro-mellanox/1341/
+)
+
 
 ## ConnectX-4
 
 25G ~ 100G
 
 通常版とLx版 違いは？
+ConnectX-4 IB/Eth FDR/EDR PCIe3.0 x8/x16
+ConnectX-4 Eth PCIe3.0 x8/x16
+ConnectX-4 Lx Eth 10/25/40/50 GbE PCIe3.0 x8
+
+[nvidia Docs Hub Networking Adapters](
+https://docs.nvidia.com/networking/adapters/index.html#nvidiatab-legacy-adapters
+)
+> Connect X3は"legacy"にさえ含まれてないから、現行ツールでのFW更新など難しいかも?
 
