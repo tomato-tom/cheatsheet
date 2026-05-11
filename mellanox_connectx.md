@@ -228,12 +228,10 @@ https://www.servants.co.jp/blog/product/pro-mellanox/1341/
 
 ## ConnectX-4
 
-25G ~ 100G
-
 通常版とLx版 違いは？
-ConnectX-4 IB/Eth FDR/EDR PCIe3.0 x8/x16
-ConnectX-4 Eth PCIe3.0 x8/x16
-ConnectX-4 Lx Eth 10/25/40/50 GbE PCIe3.0 x8
+- ConnectX-4 IB/Eth FDR/EDR PCIe3.0 x8/x16
+- ConnectX-4 Eth PCIe3.0 x8/x16
+- ConnectX-4 Lx Eth 10/25/40/50 GbE PCIe3.0 x8
 
 [nvidia Docs Hub Networking Adapters](
 https://docs.nvidia.com/networking/adapters/index.html#nvidiatab-legacy-adapters
